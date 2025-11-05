@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+#define LG_US C(S(KC_8))
+#define LG_RU C(S(KC_9))
 
 enum my_keycodes {
     JIGGLE = SAFE_RANGE,
