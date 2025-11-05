@@ -77,4 +77,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_KEYRELEASES
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
