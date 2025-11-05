@@ -24,6 +24,19 @@ enum my_keycodes {
     JIGGLE = SAFE_RANGE,
 };
 
+enum my_layers {
+  MAC_TYPING, // default Mac
+  MAC_GAMING, // non-modded, standard layout
+  MAC_FN, // + mouse
+  WIN_TYPING, // default Win
+  WIN_GAMING, // non-modded, standard layout
+  WIN_FN, // + mouse
+  GAMING_FN,
+  KEYPAD, // numpad
+  MAC_NAV, // navigation
+  WIN_NAV, // navigation
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // layer 0 Mac
