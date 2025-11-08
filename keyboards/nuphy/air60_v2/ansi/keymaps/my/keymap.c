@@ -20,6 +20,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LG_US C(S(KC_8))
 #define LG_RU C(S(KC_9))
 
+#define MC_CES MT(MOD_LGUI,KC_ESC)
+#define MC_GRV LT(MAC_FN,KC_GRV)
+#define MC_BSLS LT(MAC_FN,KC_BSLS)
+#define MC_SPC LT(MAC_NAV,KC_SPC)
+#define MC_WLT C(KC_LEFT)
+#define MC_WRT C(KC_RGHT)
+#define MC_TLT G(S(KC_LBRC))
+#define MC_TRT G(S(KC_RBRC))
+#define MC_TYP DF(MAC_TYPING)
+#define MC_GAM DF(MAC_GAMING)
+
+#define WN_GRV LT(WIN_FN,KC_GRV)
+#define WN_CES MT(MOD_LCTL,KC_ESC)
+#define WN_BSLS LT(WIN_FN,KC_BSLS)
+#define WN_SPC LT(WIN_NAV,KC_SPC)
+#define WN_WLT G(C(KC_LEFT))
+#define WN_WRT G(C(KC_RGHT))
+#define WN_TLT C(S(KC_TAB))
+#define WN_TRT C(KC_TAB)
+#define WN_TYP DF(WIN_TYPING)
+#define WN_GAM DF(WIN_GAMING)
+
+#define UC_TAB LT(KEYPAD,KC_TAB)
+#define UC_HPR S(C(A(KC_LGUI)))
+#define UC_APP LT(GAMING_FN,KC_APP)
+
 enum my_keycodes {
     JIGGLE = SAFE_RANGE,
 };
@@ -39,61 +65,76 @@ enum my_layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-// layer 0 Mac
-[0] = LAYOUT(
+[MAC_TYPING] = LAYOUT(
+	MC_GRV, 	KC_1,   	KC_2,   	KC_3,  		KC_4,   	KC_5,   	KC_6,   	KC_7,   	KC_8,   	KC_9,  		KC_0,   	KC_MINS,	KC_EQL, 	KC_BSPC,
+	UC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	MC_BSLS,
+	MC_CES,		KC_A,   	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
+	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
+	KC_LCTL,	KC_LALT,	KC_LGUI,										MC_SPC, 							UC_HPR,	    UC_APP, 	KC_LEFT,	KC_DOWN,    KC_RGHT),
+
+[MAC_GAMING] = LAYOUT(
 	KC_ESC, 	KC_1,   	KC_2,   	KC_3,  		KC_4,   	KC_5,   	KC_6,   	KC_7,   	KC_8,   	KC_9,  		KC_0,   	KC_MINS,	KC_EQL, 	KC_BSPC,
-	KC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	KC_BSLS,
+	KC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	MC_BSLS,
 	KC_CAPS,	KC_A,   	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
 	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
-	KC_LCTL,	KC_LALT,	KC_LGUI,										KC_SPC, 							KC_RGUI,	MO(1),   	KC_LEFT,	KC_DOWN,    KC_RGHT),
+	KC_LCTL,	KC_LGUI,	KC_LALT,										KC_SPC, 							KC_RALT,	UC_APP, 	KC_LEFT,	KC_DOWN,    KC_RGHT),
 
-// layer 1 Mac fn
-[1] = LAYOUT(
-	KC_GRV, 	KC_BRID,  	KC_BRIU,  	MAC_TASK, 	MAC_SEARCH, MAC_VOICE,  MAC_DND,  	KC_MPRV,  	KC_MPLY,  	KC_MNXT, 	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	_______,
-	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	DEV_RESET,	SLEEP_MODE, BAT_SHOW,
+[MAC_FN] = LAYOUT(
+	KC_GRV, 	KC_BRID,  	KC_BRIU,  	MAC_TASK, 	MAC_SEARCH, C(A(KC_T)), KC_CALC,  	KC_MPRV,  	KC_MPLY,  	KC_MNXT, 	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	_______,
+	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	MC_TYP,		MC_GAM,		_______,
 	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            JIGGLE,
-	MO(2),	    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	MO(6),   	RGB_SPD,	RGB_SPI,  	_______,	MO(2),  	RGB_VAI,    _______,
+	_______,	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	RGB_SPD,	RGB_SPI,  	_______,	_______,  	RGB_VAI,    _______,
 	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 
-// layer 2 Mac Fn+shift
-[2] = LAYOUT(
-	SHIFT_GRV, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
-	_______, 	_______,  	_______,  	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
-	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
+[WIN_TYPING] = LAYOUT(
+	WN_GRV, 	KC_1,   	KC_2,   	KC_3,  		KC_4,   	KC_5,   	KC_6,   	KC_7,   	KC_8,   	KC_9,  		KC_0,   	KC_MINS,	KC_EQL, 	KC_BSPC,
+	UC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	WN_BSLS,
+	WN_CES,		KC_A,   	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
+	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
+	KC_LCTL,	KC_LGUI,	KC_LALT,										WN_SPC, 							UC_HPR,		UC_APP, 	KC_LEFT,	KC_DOWN,    KC_RGHT),
+
+[WIN_GAMING] = LAYOUT(
+    KC_ESC, 	KC_1,   	KC_2,   	KC_3,  		KC_4,   	KC_5,   	KC_6,   	KC_7,   	KC_8,   	KC_9,  		KC_0,   	KC_MINS,	KC_EQL, 	KC_BSPC,
+	KC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	WN_BSLS,
+	KC_CAPS,	KC_A,   	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
+	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
+	KC_LCTL,	KC_LGUI,	KC_LALT,										KC_SPC, 							KC_RALT,	UC_APP, 	KC_LEFT,	KC_DOWN,    KC_RGHT),
+
+[WIN_FN] = LAYOUT(
+	SHIFT_GRV, 	KC_BRID,   	KC_BRIU,    G(KC_TAB), 	KC_MYCM,   	C(A(KC_T)),	KC_CALC,   	KC_MPRV,   	KC_MPLY,   	KC_MNXT,  	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	_______,
+	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	WN_TYP,		WN_GAM,		_______,
+	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            JIGGLE,
 	_______,	_______,   	_______,   	RGB_TEST,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,	_______, 	_______,    _______,
 	_______,	_______,	_______,										_______, 							_______,	_______,   	_______,	_______,    _______),
 
-// layer 3 Win
-[3] = LAYOUT(
-	KC_ESC, 	KC_1,   	KC_2,   	KC_3,  		KC_4,   	KC_5,   	KC_6,   	KC_7,   	KC_8,   	KC_9,  		KC_0,   	KC_MINS,	KC_EQL, 	KC_BSPC,
-	KC_TAB, 	KC_Q,   	KC_W,   	KC_E,  		KC_R,   	KC_T,   	KC_Y,   	KC_U,   	KC_I,   	KC_O,  		KC_P,   	KC_LBRC,	KC_RBRC, 	KC_BSLS,
-	KC_CAPS,	KC_A,   	KC_S,   	KC_D,  		KC_F,   	KC_G,   	KC_H,   	KC_J,   	KC_K,   	KC_L,  		KC_SCLN,	KC_QUOT, 	            KC_ENT,
-	KC_LSFT,	KC_Z,   	KC_X,   	KC_C,  		KC_V,   	KC_B,   	KC_N,   	KC_M,   	KC_COMM,	KC_DOT,		KC_SLSH,	KC_RSFT,	KC_UP,		KC_DEL,
-	KC_LCTL,	KC_LGUI,	KC_LALT,										KC_SPC, 							KC_RALT,	MO(4),   	KC_LEFT,	KC_DOWN,    KC_RGHT),
-
-// layer 4 win fn
-[4] = LAYOUT(
+[GAMING_FN] = LAYOUT(
 	KC_GRV, 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
 	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	DEV_RESET,	SLEEP_MODE, BAT_SHOW,
 	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            JIGGLE,
-	MO(5),	    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	MO(6),   	RGB_SPD,	RGB_SPI,  	_______,	MO(5),  	RGB_VAI,    _______,
+	_______,	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	RGB_SPD,	RGB_SPI,  	_______,	_______,  	RGB_VAI,    _______,
 	_______,	_______,	_______,										_______, 							_______,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 
-// layer 5 win fn+shift
-[5] = LAYOUT(
-	SHIFT_GRV, 	KC_BRID,   	KC_BRIU,    _______,  	_______,   	_______,   	_______,   	KC_MPRV,   	KC_MPLY,   	KC_MNXT,  	KC_MUTE, 	KC_VOLD, 	KC_VOLU, 	_______,
-	_______, 	_______,  	_______,  	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	_______,    _______,
-	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	_______,	_______,   	_______,   	RGB_TEST,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,	_______, 	_______,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	_______,	_______,    _______),
+[KEYPAD] = LAYOUT(
+	KC_NUM, 	S(KC_1),  	S(KC_2),  	S(KC_3), 	S(KC_4),  	S(KC_5),  	S(KC_6),  	S(KC_7),  	S(KC_8),  	S(KC_9), 	S(KC_0), 	KC_F11, 	KC_F12, 	_______,
+	_______, 	LNK_BLE1,  	LNK_BLE2,  	LNK_BLE3,  	LNK_RF,   	_______,   	KC_PSLS,   	KC_P7,   	KC_P8,   	KC_P9,  	KC_PMNS,   	DEV_RESET,	SLEEP_MODE, BAT_SHOW,
+	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	KC_PAST,   	KC_P4,   	KC_P5,   	KC_P6,  	KC_PPLS,   	KC_PENT,	            JIGGLE,
+	_______,	_______,   	_______,   	_______,  	_______,   	BAT_SHOW, 	KC_P0,   	KC_P1,   	KC_P2,		KC_P3,  	KC_PDOT,	_______,  	RGB_VAI,    _______,
+	_______,	_______,	_______,										_______, 							KC_RALT,	_______,   	RGB_MOD,	RGB_VAD,    RGB_HUI),
 
-// layer 6 function
-[6] = LAYOUT(
-	_______, 	_______,  	_______,  	_______, 	_______,  	_______,  	_______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
-	_______, 	_______,  	_______,  	_______, 	_______,  	_______,  	_______,  	_______,  	_______,  	_______, 	_______, 	_______, 	_______, 	_______,
-	_______, 	_______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	_______,   	_______,  	_______,   	_______,	            _______,
-	_______,    _______,   	_______,   	_______,  	_______,   	_______,   	_______,   	_______,   	SIDE_SPD,	SIDE_SPI,  	_______,	_______,  	SIDE_VAI,    _______,
-	_______,	_______,	_______,										_______, 							_______,	_______,   	SIDE_MOD,	SIDE_VAD,    SIDE_HUI)
+[MAC_NAV] = LAYOUT(
+    G(C(KC_Q)),	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
+	KC_CAPS, 	G(KC_Q),  	MC_TLT, 	KC_TAB,  	MC_TRT, 	G(KC_SPC), 	KC_PGUP,   	G(KC_LEFT),	KC_UP,   	G(KC_RGHT),	KC_DEL,   	G(KC_LBRC),	G(KC_RBRC), _______,
+	KC_DEL, 	KC_LCTL,   	KC_LGUI,   	KC_LALT,  	KC_LSFT,   	G(S(KC_4)), KC_PGDN,   	KC_LEFT,   	KC_DOWN,   	KC_RGHT,  	KC_BSPC,   	KC_ESC,	            	G(S(KC_3)),
+	CW_TOGG,	KC_F11,   	MC_WLT,		C(KC_UP),	MC_WRT,   	BAT_SHOW,  	_______,   	LG_US,   	LG_RU,		S(KC_F10), 	KC_BSPC,	C(G(KC_SPC)), _______,    _______,
+	_______,	_______,	_______,										_______, 							UC_HPR,		_______,   	G(KC_UP),	_______,    G(KC_DOWN)),
+
+[WIN_NAV] = LAYOUT(
+	G(KC_L), 	KC_F1,  	KC_F2,  	KC_F3, 		KC_F4,  	KC_F5,  	KC_F6,  	KC_F7,  	KC_F8,  	KC_F9, 		KC_F10, 	KC_F11, 	KC_F12, 	_______,
+	KC_CAPS, 	A(KC_F4),  	WN_TLT, 	KC_TAB,  	WN_TRT, 	KC_LGUI,   	KC_PGUP,   	KC_HOME,   	KC_UP,   	KC_END,  	KC_DEL,   	A(KC_LEFT),	A(KC_RGHT), _______,
+	KC_DEL, 	KC_LGUI,   	KC_LALT,   	KC_LCTL,  	KC_LSFT,   	G(S(KC_S)), KC_PGDN,   	KC_LEFT,   	KC_DOWN,   	KC_RGHT,  	KC_BSPC,   	KC_ESC,	            	KC_PSCR,
+	CW_TOGG,	G(KC_D),   	WN_WLT,		G(KC_TAB),	WN_WRT,   	BAT_SHOW,  	_______,   	LG_US,   	LG_RU,		KC_APP,  	KC_BSPC,	G(KC_DOT), 	_______,    _______,
+	_______,	_______,	_______,										_______, 							UC_HPR,		_______,   	A(KC_UP),	_______,    KC_ENT),
+
 };
 
 
